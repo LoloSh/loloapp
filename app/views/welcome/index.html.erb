@@ -1,0 +1,21 @@
+<h1>Home</h1>
+
+
+<%= form_tag("/search", method: "post") do %>
+
+
+
+
+    <div class="field">
+      <%= label_tag(:email, "Email:") %>
+      <%= text_field_tag(:email) %>
+    </div>
+    <div class="field">
+      <%= label_tag(:password, "Password:") %>
+      <%= text_field_tag(:password) %>
+    </div>
+    <%= submit_tag("Log in") %>
+
+
+<% end %>
+<p><%=@error%></p>
