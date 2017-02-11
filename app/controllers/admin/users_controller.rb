@@ -1,16 +1,10 @@
-class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :get_session, only: [:index, :show, :edit, :update, :destroy]
-
-
-
-
-
+class Admin::UsersController < ApplicationController
+  before_action :set_user, only: [ :show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
-
+    @users = User.all
   end
 
   # GET /users/1
@@ -31,11 +25,10 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @user.role="Customer"
-    byebug
+
     respond_to do |format|
       if @user.save
-        format.html { render "welcome/index", notice: 'Your account was successfully created. You can log in now.' }
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -68,9 +61,6 @@ class UsersController < ApplicationController
     end
   end
 
-
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -81,7 +71,6 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:firstname, :surname, :email, :hashpw, :birthday, :role, :position)
     end
-
     def get_session
       @user = User.find(session[:id])
     end

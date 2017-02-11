@@ -1,5 +1,50 @@
-<h1>New User</h1>
+<h1>Please fill this form to have an account</h1>
+<%= form_for(@user, controller: 'customer', action:'create') do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-<%= render 'form', user: @user %>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-<%= link_to 'Back', users_path %>
+    <div class="field">
+      <%= f.label :firstname %>
+      <%= f.text_field :firstname %>
+    </div>
+
+    <div class="field">
+      <%= f.label :surname %>
+      <%= f.text_field :surname %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :hashpw %>
+      <%= f.text_field :hashpw %>
+    </div>
+
+    <div class="field">
+      <%= f.label :birthday %>
+      <%= f.date_select :birthday, start_year:1960, end_year:2000 %>
+    </div>
+
+
+
+    <div class="field">
+      <%= f.label :position %>
+      <%= f.text_field :position %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

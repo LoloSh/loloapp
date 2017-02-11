@@ -1,7 +1,8 @@
 <h1>Home</h1>
+<p id="notice"><%= notice %></p>
 
 
-<%= form_tag("/search", method: "post") do %>
+<%= form_tag("/log", method: "post") do %>
 
 
 
@@ -15,10 +16,14 @@
       <%= text_field_tag(:password) %>
     </div>
     <%= submit_tag("Log in") %>
-    <%= button_tag("Sign up") %>
 
 
 
 
+
+
+<% end %>
+<%= form_tag("/signup", method: "get") do %>
+    <%= submit_tag("Sign up") %>
 <% end %>
 <p><%=@error%></p>
