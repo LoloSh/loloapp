@@ -3,12 +3,13 @@ class LogController < ApplicationController
   def login
     email=params[:email]
     password=params[:password]
-    @user = User.find_by_email_and_hashpw(email,password)
+    @user = User.login_hash(email,password)
+   # @user = User.find_by_email_and_hashpw(email,password)
     if @user != nil && @user.role=="Admin"
 
       redirect_to admin_users_path
 
-      elsif @user != nil && (@user.role=="Customer" || @user.role=="")
+      elsif @user != nil && @user.role=="Customer"
 
 
       redirect_to users_path

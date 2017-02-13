@@ -7,9 +7,18 @@ class UsersController < ApplicationController
 
 
 
+
   # GET /users
   # GET /users.json
   def index
+    if @user.nil?
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Try to log in before doing anything' }
+        p notice
+      end
+    else
+    end
+
 
   end
 
@@ -32,10 +41,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.role="Customer"
-    byebug
+
+
     respond_to do |format|
       if @user.save
-        format.html { render "welcome/index", notice: 'Your account was successfully created. You can log in now.' }
+        format.html { redirect_to root_path, notice: 'Your account was successfully created. You can log in now.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -68,6 +78,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def logout
+    session.clear
+    redirect_to(root_path)
+  end
+
 
 
 
@@ -79,11 +94,11 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:firstname, :surname, :email, :hashpw, :birthday, :role, :position)
+      params.require(:user).permit(:firstname, :surname, :email, :hashpw, :hashpw_confirmation, :birthday, :role, :position)
     end
 
     def get_session
-      @user = User.find(session[:id])
+      @user = User.find_by_id(session[:id])
     end
 
 

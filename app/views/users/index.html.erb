@@ -8,7 +8,6 @@
       <th>Firstname</th>
       <th>Surname</th>
       <th>Email</th>
-      <th>Hashpw</th>
       <th>Birthday</th>
       <th>Role</th>
       <th>Position</th>
@@ -21,11 +20,11 @@
         <td><%= @user.firstname %></td>
         <td><%= @user.surname %></td>
         <td><%= @user.email %></td>
-        <td><%= @user.hashpw %></td>
         <td><%= @user.birthday %></td>
         <td><%= @user.role %></td>
         <td><%= @user.position %></td>
         <td><%= link_to 'Edit', @user %></td>
+        <td><%= link_to 'Log out', users_logout_path, method: :post %></td>
       </tr>
   </tbody>
 </table>

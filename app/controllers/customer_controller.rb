@@ -8,13 +8,12 @@ class CustomerController < ApplicationController
 
 
   def create
-    p "++++++++"
     @user = User.new(user_params)
     @user.role="Customer"
 
     respond_to do |format|
       if @user.save
-        format.html { render 'welcome/index' }
+        format.html { redirect_to :root_path, notice: 'Your account was successfully created. You can log in now.'  }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

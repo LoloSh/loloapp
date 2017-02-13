@@ -1,9 +1,17 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [ :show, :edit, :update, :destroy]
+  before_action :get_session, only: [:index]
+
 
   # GET /users
   # GET /users.json
   def index
+    if @user.nil?
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Try to log in before doing anything' }
+
+      end
+    end
     @users = User.all
   end
 
@@ -25,6 +33,9 @@ class Admin::UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    p @user
+    require 'digest/sha1'
+    @user.hashpw = Digest::SHA1.hexdigest()
 
     respond_to do |format|
       if @user.save
@@ -61,6 +72,11 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def logout
+    session.clear
+    redirect_to(root_path)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -72,7 +88,7 @@ class Admin::UsersController < ApplicationController
       params.require(:user).permit(:firstname, :surname, :email, :hashpw, :birthday, :role, :position)
     end
     def get_session
-      @user = User.find(session[:id])
+      @user = User.find_by_id(session[:id])
     end
 
 

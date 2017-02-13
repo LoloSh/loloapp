@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - loloapp_development@localhost" uuid="fe2f05ba-9a89-44e0-9a84-436a214e5576">
+    <database-info product="MySQL" version="5.7.17-0ubuntu0.16.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
+      <schema id="1" name="loloapp_development"/>
+      <table id="2" parent="1" name="ar_internal_metadata"/>
+      <table id="3" parent="1" name="schema_migrations"/>
+      <table id="4" parent="1" name="users"/>
+      <column id="5" parent="2" name="key">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="6" parent="2" name="value">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="7" parent="2" name="created_at">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+      </column>
+      <column id="8" parent="2" name="updated_at">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+      </column>
+      <key id="9" parent="2" name="PRIMARY">
+        <columns>key</columns>
+        <primary>1</primary>
+      </key>
+      <column id="10" parent="3" name="version">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <key id="11" parent="3" name="PRIMARY">
+        <columns>version</columns>
+        <primary>1</primary>
+      </key>
+      <column id="12" parent="4" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="13" parent="4" name="firstname">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="14" parent="4" name="surname">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="15" parent="4" name="email">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="16" parent="4" name="hashpw">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="17" parent="4" name="birthday">
+        <data-type>date</data-type>
+      </column>
+      <column id="18" parent="4" name="role">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="19" parent="4" name="position">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="20" parent="4" name="created_at">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+      </column>
+      <column id="21" parent="4" name="updated_at">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+      </column>
+      <key id="22" parent="4" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>
