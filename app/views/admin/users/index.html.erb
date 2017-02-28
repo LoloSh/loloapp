@@ -1,42 +1,61 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron text-center" style="background-color:#8e9bf0">
 
-<h1>Hello,<%= @user.firstname %>, welcome on board !  </h1>
+<h1>Hello Master <%= @current_user.firstname %>, welcome on board ! </h1>
+  <p id="notice" ><%= notice %></p>
 
-<table>
-  <thead>
+</div>
+
+<div class="container" >
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped">  <thead>
     <tr>
       <th>Firstname</th>
       <th>Surname</th>
       <th>Email</th>
-      <th>Hashpw</th>
       <th>Birthday</th>
       <th>Role</th>
       <th>Position</th>
-      <th colspan="3"></th>
+      <th colspan="9"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
-    <% @users.each do |user| %>
+      <tbody>
       <tr>
-        <td><%= user.firstname %></td>
-        <td><%= user.surname %></td>
-        <td><%= user.email %></td>
-        <td><%= user.hashpw %></td>
-        <td><%= user.birthday %></td>
-        <td><%= user.role %></td>
-        <td><%= user.position %></td>
-        <td><%= link_to 'Show', admin_user_path(user) %></td>
-        <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
-        <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
+        <td><%= @current_user.firstname %></td>
+        <td><%=@current_user.surname %></td>
+        <td><%= @current_user.email %></td>
+        <td><%= @current_user.birthday %></td>
+        <td><%=@current_user.role %></td>
+        <td><%= @current_user.position %></td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      </tbody>
+    </table>
+  </div>
 
-<br>
+  <div><%= link_to 'Clients', user_clients_path  %> </div>
+  <div><%= link_to 'Pets', user_pets_path  %> </div>
 
-<%= link_to 'New User', new_admin_user_path %>
-<br><%= link_to 'Log out', admin_users_logout_path, method: :post %></br>
+  <div class="table-responsive" style="margin-top: 30px">
+    <table class="table table-hover table-striped">  <thead>
+    <tr>
+      <th>Administrator options</th>
+      <th colspan="9"></th>
+    </tr>
+    </thead>
+
+      <tbody>
+      <tr>
+        <td><%= link_to 'Manage Users', admin_user_users_path %></td>
+        <td><%= link_to 'Manage Clients'%></td>
+        <td><%= link_to 'Manage Pets'%></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div><%= link_to 'Log out', welcome_path %></div>
+
+
+</div>
+
 

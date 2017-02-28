@@ -1,4 +1,5 @@
-<%= form_for(admin_users_path) do |f| %>
+
+<%= form_for(user, url: admin_users_url(user) , method: :post) do |f| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -13,40 +14,70 @@
 
   <div class="field">
     <%= f.label :firstname %>
+    </div>
+
+    <div class="field" style="margin-bottom: 15px">
     <%= f.text_field :firstname %>
   </div>
 
   <div class="field">
     <%= f.label :surname %>
+    </div>
+
+    <div class="field" style="margin-bottom: 15px">
     <%= f.text_field :surname %>
   </div>
 
   <div class="field">
     <%= f.label :email %>
+    </div>
+
+    <div class="field" style="margin-bottom: 15px">
     <%= f.text_field :email %>
   </div>
 
   <div class="field">
-    <%= f.label :hashpw %>
-    <%= f.text_field :hashpw %>
+    <%= f.label 'Password'%>
+    </div>
+
+    <div class="field" style="margin-bottom: 15px">
+    <%= f.password_field :hashpw %>
   </div>
+
+    <div class="field">
+      <%= f.label 'Password confirmation' %>
+      </div>
+
+      <div class="field" style="margin-bottom: 15px">
+      <%= f.password_field :hashpw_confirmation %>
+    </div>
 
   <div class="field">
     <%= f.label :birthday %>
+    </div>
+
+    <div class="field" style="margin-bottom: 15px">
     <%= f.date_select :birthday, start_year:1960, end_year:2000 %>
   </div>
 
   <div class="field">
     <%= f.label :role %>
+    </div>
+
+    <div class="field" style="margin-bottom: 15px">
     <%= f.text_field :role %>
   </div>
 
   <div class="field">
     <%= f.label :position %>
+    </div>
+
+    <div class="field" style="margin-bottom: 15px">
     <%= f.text_field :position %>
   </div>
 
-  <div class="actions">
+  <div class="actions" style="margin-bottom: 15px">
     <%= f.submit %>
   </div>
 <% end %>
+

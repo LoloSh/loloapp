@@ -1,0 +1,1 @@
+json.partial! "oauth/token/client", client: @client

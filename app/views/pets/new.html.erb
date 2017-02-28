@@ -1,0 +1,34 @@
+<div class="jumbotron text-center">
+  <h1>Add a new pet </h1>
+</div>
+
+  <div class="container text-center"  >
+
+    <%= form_for(@pet, url:user_pets_path(@pet) , method: :post ) do |f| %>
+
+
+        <div class="field">
+          <%= f.label :name %>
+        </div>
+
+        <div class="field" style="margin-bottom: 15px">
+          <%= f.text_field :name %>
+        </div>
+
+        <div class="field">
+          <%= f.label :race %>
+        </div>
+
+        <div class="field" style="margin-bottom: 15px">
+          <%= f.text_field :race %>
+        </div>
+
+
+        <div class="actions" style="margin-bottom: 15px">
+          <%= f.submit %>
+        </div>
+    <% end %>
+  <div>  <%= link_to 'Back', user_pets_path %> </div>
+
+</div>
+

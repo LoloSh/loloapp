@@ -1,9 +1,14 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron text-center"  style="background-color:#dEE119">
 
-<h1>Hello <%= @user.surname %>, welcome on board ! </h1>
+  <h1>Hello <%= @current_user.firstname %>, welcome on board ! </h1>
+  <p id="notice" ><%= notice %></p>
 
-<table>
-  <thead>
+</div>
+
+<div class="container" >
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped">  <thead>
     <tr>
       <th>Firstname</th>
       <th>Surname</th>
@@ -11,24 +16,31 @@
       <th>Birthday</th>
       <th>Role</th>
       <th>Position</th>
-      <th colspan="3"></th>
+      <th colspan="9"></th>
     </tr>
   </thead>
 
   <tbody>
       <tr>
-        <td><%= @user.firstname %></td>
-        <td><%= @user.surname %></td>
-        <td><%= @user.email %></td>
-        <td><%= @user.birthday %></td>
-        <td><%= @user.role %></td>
-        <td><%= @user.position %></td>
-        <td><%= link_to 'Edit', @user %></td>
-        <td><%= link_to 'Log out', users_logout_path, method: :post %></td>
+        <td><%= @current_user.firstname %></td>
+        <td><%=@current_user.surname %></td>
+        <td><%= @current_user.email %></td>
+        <td><%= @current_user.birthday %></td>
+        <td><%=@current_user.role %></td>
+        <td><%= @current_user.position %></td>
+        <td><%= link_to 'Edit informations', edit_user_path%></td>
       </tr>
   </tbody>
 </table>
+    </div>
 
-<br>
+  <div><%= link_to 'Clients', user_clients_path  %> </div>
+  <div><%= link_to 'Pets', user_pets_path  %> </div>
+  <div><%= link_to 'Log out', welcome_path %></div>
+
+
+</div>
+
+
 
 

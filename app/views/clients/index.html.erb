@@ -1,0 +1,42 @@
+
+<div class="jumbotron text-center"  style="background-color:#8e9bf0">
+
+  <h1>Hello <%= @current_user.firstname %>, welcome on board ! </h1>
+  <p id="notice" ><%= notice %></p>
+
+</div>
+<div class="container" >
+
+<div class="table-responsive">
+
+  <table class="table table-hover table-striped">
+    <thead>
+    <tr>
+      <th>Owner of the app client</th>
+      <th>Name of the client</th>
+      <th>Client id</th>
+      <th>Client secret</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @clients.each do |client| %>
+        <tr>
+          <td><%= User.find_by_id(client.user_id).firstname %></td>
+
+          <td><%= client.oauth_name%></td>
+          <td><%= client.oauth_id %></td>
+          <td><%= client.oauth_secret %></td>
+          <td><%= link_to 'Destroy', delete_user_client_path(client), method: :delete, data: { confirm: 'Are you sure you want to destroy this client ?' } %></td>
+
+
+
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+  <div >   <%= link_to 'New Client', new_user_client_path %> </div>
+  <div> <%= link_to 'Return to main menu', user_path%> </div>
+</div>

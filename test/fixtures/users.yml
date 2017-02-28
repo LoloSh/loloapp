@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  firstname: MyString
-  surname: MyString
-  email: MyString
-  hashpw: MyString
-  birthday: 2017-02-09
-  role: MyString
-  position: MyString
+loic:
+  firstname: Loic
+  surname: Fotso
+  email: loic@metadot.com
+  hashpw: 123
+  birthday: 1996-09-03
+  role: Admin
+  position: Intern
 
-two:
-  firstname: MyString
-  surname: MyString
-  email: MyString
-  hashpw: MyString
-  birthday: 2017-02-09
-  role: MyString
-  position: MyString
+roxane:
+  firstname: Roxane
+  surname: Lemcharki
+  email: roxane@metadot.com
+  hashpw: 321
+  birthday: 1995-03-01
+  role: Customer
+  position: Intern

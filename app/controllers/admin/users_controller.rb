@@ -1,18 +1,21 @@
+require 'digest/sha1'
+
+
 class Admin::UsersController < ApplicationController
-  before_action :set_user, only: [ :show, :edit, :update, :destroy]
-  before_action :get_session, only: [:index]
+  before_action :authentification, only: [:index, :edit, :update, :users]
+  before_action :authentification_admin, only: [:index, :edit, :update, :users]
+  before_action :set_user, only: [ :edit, :update, :destroy]
 
 
-  # GET /users
-  # GET /users.json
+  # GET /user
+  # GET /user.json
   def index
-    if @user.nil?
-      respond_to do |format|
-        format.html { redirect_to root_path, notice: 'Try to log in before doing anything' }
+  end
 
-      end
-    end
-    @users = User.all
+  # GET admin/user/users
+  # GET admin/user/users
+  def users
+    @users =User.all
   end
 
   # GET /users/1
@@ -33,13 +36,11 @@ class Admin::UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    p @user
-    require 'digest/sha1'
-    @user.hashpw = Digest::SHA1.hexdigest()
+
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to admin_users_url, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -53,7 +54,7 @@ class Admin::UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to admin_users_url, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -77,19 +78,27 @@ class Admin::UsersController < ApplicationController
     redirect_to(root_path)
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find(params[:user_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:firstname, :surname, :email, :hashpw, :birthday, :role, :position)
-    end
-    def get_session
-      @user = User.find_by_id(session[:id])
+      params.require(:user).permit(:firstname, :surname, :email, :hashpw, :hashpw_confirmation,  :birthday, :role, :position)
     end
 
+  def authentification_admin
+    if @current_user.role !='Admin'
+      respond_to do |format|
+        format.html { return render :file => 'public/403.html', :status => :forbidden, :layout => true }
+        format.json { return render json: {'Message':'You don;t have the right to access to these informations'} , :status => :forbidden}
+      end
+
+    end
+  end
 
 end

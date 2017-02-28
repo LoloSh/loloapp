@@ -1,0 +1,41 @@
+<div class="jumbotron text-center" style="background-color:#dEE119">
+
+
+  <h1>List of your pets </h1>
+  <p id="notice"><%= notice %></p>
+
+</div>
+
+<div class="container" >
+  <div class="table-responsive">
+    <table class="table table-hover table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Race</th>
+
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @current_user.pets.each do |pet| %>
+          <tr>
+            <td><%= pet.name %></td>
+            <td><%= pet.race %></td>
+            <td><%= link_to 'Edit', edit_user_pet_path(pet.id)  %></td>
+            <td><%= link_to 'Destroy', delete_user_pet_path(pet.id), method: :delete, data: { confirm: 'Are you sure to delete this pet?' } %></td>
+
+
+
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div ><% if @current_user.role=='Customer'%>   <%= link_to 'New Pet', new_user_pet_path %> </div><%end%>
+  <div><% if @current_user.role=='Customer'%>  <%= link_to 'Return to main menu', user_path%> </div><%end%>
+
+</div>

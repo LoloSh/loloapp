@@ -1,6 +1,8 @@
+require 'securerandom'
+
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :get_session, only: [:index, :show, :edit, :update, :destroy]
+  before_action :authentification, only: [:index, :edit, :update]
+
 
 
 
@@ -11,15 +13,6 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    if @user.nil?
-      respond_to do |format|
-        format.html { redirect_to root_path, notice: 'Try to log in before doing anything' }
-        p notice
-      end
-    else
-    end
-
-
   end
 
   # GET /users/1
@@ -37,7 +30,6 @@ class UsersController < ApplicationController
   end
 
   # POST /users
-  # POST /users.json
   def create
     @user = User.new(user_params)
     @user.role="Customer"
@@ -55,11 +47,10 @@ class UsersController < ApplicationController
   end
 
   # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+      if @current_user.update(user_params)
+        format.html { redirect_to user_path, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -69,7 +60,6 @@ class UsersController < ApplicationController
   end
 
   # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user.destroy
     respond_to do |format|
@@ -78,10 +68,14 @@ class UsersController < ApplicationController
     end
   end
 
+
+
   def logout
     session.clear
-    redirect_to(root_path)
+    redirect_to(root_path, notice: 'You have successfully logged out.')
   end
+
+
 
 
 
@@ -97,9 +91,9 @@ class UsersController < ApplicationController
       params.require(:user).permit(:firstname, :surname, :email, :hashpw, :hashpw_confirmation, :birthday, :role, :position)
     end
 
-    def get_session
-      @user = User.find_by_id(session[:id])
-    end
+
+
+
 
 
 end

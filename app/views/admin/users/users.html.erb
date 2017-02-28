@@ -1,0 +1,49 @@
+<div class="jumbotron text-center" style="background-color:#8e9bf0">
+
+
+  <h1>Master <%= @current_user.firstname %>, take a look at all the users of the website.  </h1>
+  <p id="notice"><%= notice %></p>
+
+</div>
+
+<div class="container" >
+  <div class="table-responsive">
+    <table class="table table-hover table-striped">
+      <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Birthday</th>
+        <th>Role</th>
+        <th>Position</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= user.firstname %></td>
+            <td><%= user.surname %></td>
+            <td><%= user.email %></td>
+            <td><%= user.birthday %></td>
+            <td><%= user.role %></td>
+            <td><%= user.position %></td>
+            <td><%= link_to 'Edit informations', admin_edit_user_user_path(user)%></td>
+
+
+
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to 'Return to main menu', admin_user_path %>
+
+
+
+
+</div>
+
+

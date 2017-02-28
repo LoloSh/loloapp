@@ -1,0 +1,38 @@
+
+<div class="jumbotron text-center"  style="background-color:#dEE119">
+  <h1> Register  a new client account</h1>
+</div>
+
+<div class="container text-center"  >
+
+
+  <%= form_tag(user_clients_path, method: "post") do %>
+
+
+
+
+      <div class="field">
+        <%= text_field_tag(:oauth_name, nil, placeholder:'Your client name' ) %>
+      </div>
+      <div class="field">
+        <%= submit_tag("Register") %>
+      </div>
+
+
+      <div class="field">
+
+
+
+        <% if @current_user.role=='Customer'%>  <div><%=link_to 'Previous page', user_clients_path %> </div> <% end %>
+        <% if @current_user.role=='Admin'%>  <div><%=link_to 'Previous page', admin_user_clients_path %> </div>< <% end %>
+      </div>
+
+
+
+
+
+
+
+
+  <% end %>
+</div>
